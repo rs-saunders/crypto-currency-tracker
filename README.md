@@ -62,3 +62,9 @@ export const currentHoldingsData = [
   },
 ];
 ```
+
+### Screenshots
+
+<img src="./docs/desktop.screenshot.png" width="256px" />
+
+<img src="./docs/mobile.screenshot.png" width="256px" />
