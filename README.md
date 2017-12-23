@@ -5,6 +5,8 @@ of supplied persons amounts of each currency.
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+<img src="./docs/desktop.screenshot.png" width="1024px" />
+
 ### Setup
 
 ```
@@ -63,8 +65,6 @@ export const currentHoldingsData = [
 ];
 ```
 
-### Screenshots
+### Responsive
 
-<img src="./docs/desktop.screenshot.png" width="256px" />
-
-<img src="./docs/mobile.screenshot.png" width="256px" />
+<img src="./docs/mobile.screenshot.png" />
