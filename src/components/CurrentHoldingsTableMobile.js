@@ -6,6 +6,8 @@ import AppBar from 'material-ui/AppBar';
 import { Table, TableBody, TableRow } from 'material-ui/Table';
 import { TableHeaderColumn, TableRowColumn, OverallColumn, CurrencyColumn, CryptoCurrencyColumn } from './TableColumns';
 
+const cryptoCurrencies = ['BTC', 'ETH', 'LTC'];
+
 const styles = {
   appBar: {
     backgroundColor: '#efefef',
@@ -18,78 +20,66 @@ const styles = {
 const CurrentHoldingsTableMobile = ({data}) => {
   return (
     <Fragment>
-      {data.map( (person, index) => (
-        <Fragment key={index}>
-          {index > 0 && <Divider/>}
-          <AppBar title={person.who} style={styles.appBar} titleStyle={styles.appBarTitle} showMenuIconButton={false}/>
-          <Table>
-            <TableBody
-              showRowHover={false}
-              stripedRows={false}
-              displayRowCheckbox={false}
-            >
-              <TableRow>
-                <TableRowColumn />
-                <TableHeaderColumn>Stake</TableHeaderColumn>
-                <CurrencyColumn value={person.stake} />
-              </TableRow>
-              <TableRow>
-                <TableHeaderColumn rowSpan={2}>BTC</TableHeaderColumn>
-                <TableHeaderColumn>Holds</TableHeaderColumn>
-                <CryptoCurrencyColumn value={person.btc.holds} />
-              </TableRow>
-              <TableRow>
-                <TableHeaderColumn>Val</TableHeaderColumn>
-                <CurrencyColumn value={person.btc.val} />
-              </TableRow>
-              <TableRow>
-                <TableHeaderColumn rowSpan={2}>ETH</TableHeaderColumn>
-                <TableHeaderColumn>Holds</TableHeaderColumn>
-                <CryptoCurrencyColumn value={person.eth.holds} />
-              </TableRow>
-              <TableRow>
-                <TableHeaderColumn>Val</TableHeaderColumn>
-                <CurrencyColumn value={person.eth.val} />
-              </TableRow>
-              <TableRow>
-                <TableHeaderColumn rowSpan={2}>LTC</TableHeaderColumn>
-                <TableHeaderColumn>Holds</TableHeaderColumn>
-                <CryptoCurrencyColumn value={person.ltc.holds} />
-              </TableRow>
-              <TableRow>
-                <TableHeaderColumn>Val</TableHeaderColumn>
-                <CurrencyColumn value={person.ltc.val} />
-              </TableRow>
-              <TableRow>
-                <TableRowColumn />
-                <TableHeaderColumn>Overall</TableHeaderColumn>
-                <OverallColumn value={person.overall} />
-              </TableRow>
-            </TableBody>
-          </Table>
-        </Fragment>
-      ))}
+      {Object.keys(data).map((person, index) => {
+        const { overallProfit, depositedValue, ...currencyData } = data[person];
+        return (
+          <Fragment key={index}>
+            {index > 0 && <Divider/>}
+            <AppBar title={person} style={styles.appBar} titleStyle={styles.appBarTitle} showMenuIconButton={false}/>
+            <Table>
+              <TableBody
+                showRowHover={false}
+                stripedRows={false}
+                displayRowCheckbox={false}
+              >
+                <TableRow>
+                  <TableRowColumn />
+                  <TableHeaderColumn>Stake</TableHeaderColumn>
+                  <CurrencyColumn value={depositedValue} />
+                </TableRow>
+                {cryptoCurrencies.map(c =>
+                  <Fragment key={c}>
+                    <TableRow>
+                      <TableHeaderColumn rowSpan={2}>{c}</TableHeaderColumn>
+                      <TableHeaderColumn>Holds</TableHeaderColumn>
+                      <CryptoCurrencyColumn value={currencyData[c].holds} />
+                    </TableRow>
+                    <TableRow>
+                      <TableHeaderColumn>Val</TableHeaderColumn>
+                      <CurrencyColumn value={currencyData[c].valueGBP} />
+                    </TableRow>
+                  </Fragment>
+                )}
+                <TableRow>
+                  <TableRowColumn />
+                  <TableHeaderColumn>Overall</TableHeaderColumn>
+                  <OverallColumn value={overallProfit} />
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Fragment>
+        )
+      })}
     </Fragment>
   );
 };
 
 CurrentHoldingsTableMobile.propTypes = {
-  data: PropTypes.arrayOf(
+  data: PropTypes.objectOf(
     PropTypes.shape({
-      who: PropTypes.string,
-      stake: PropTypes.number,
-      overall: PropTypes.number,
-      btc: PropTypes.shape({
+      depositedValue: PropTypes.number,
+      overallProfit: PropTypes.number,
+      BTC: PropTypes.shape({
         holds: PropTypes.number,
-        val: PropTypes.number,
+        valueGBP: PropTypes.number,
       }),
-      eth: PropTypes.shape({
+      ETH: PropTypes.shape({
         holds: PropTypes.number,
-        val: PropTypes.number,
+        valueGBP: PropTypes.number,
       }),
-      ltc: PropTypes.shape({
+      LTC: PropTypes.shape({
         holds: PropTypes.number,
-        val: PropTypes.number,
+        valueGBP: PropTypes.number,
       }),
     }),
   ),

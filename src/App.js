@@ -9,8 +9,7 @@ import CurrentHoldingsTable from './components/CurrentHoldingsTable';
 import CurrentHoldingsTableMobile from './components/CurrentHoldingsTableMobile';
 import SpotPricesTable from './components/SpotPricesTable';
 
-import { spotPriceData, currentHoldingsData } from './data';
-import exampleData from './data/example';
+import { spotPrices, currentHoldings } from './data/example'
 
 import './App.css';
 
@@ -24,15 +23,15 @@ class App extends Component {
         <div className="App">
           <Paper className="Paper">
             <AppBar title="Spot Prices" showMenuIconButton={false} />
-            <SpotPricesTable data={exampleData.spotPrices} />
+            <SpotPricesTable data={spotPrices} />
           </Paper>
           <Paper className="Paper">
             <AppBar title="Current Holdings" showMenuIconButton={false} />
             <Desktop>
-              <CurrentHoldingsTable data={currentHoldingsData} />
+              <CurrentHoldingsTable data={currentHoldings} />
             </Desktop>
             <Mobile>
-              <CurrentHoldingsTableMobile data={currentHoldingsData} />
+              <CurrentHoldingsTableMobile data={currentHoldings} />
             </Mobile>
           </Paper>
         </div>

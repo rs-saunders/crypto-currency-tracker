@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Table, TableBody, TableHeader, TableRow } from 'material-ui/Table';
 import { TableHeaderColumn, TableRowColumn, OverallColumn, CurrencyColumn, CryptoCurrencyColumn } from './TableColumns';
+
+const cryptoCurrencies = ['BTC', 'ETH', 'LTC'];
 
 const CurrentHoldingsTable = ({data}) => {
   return (
@@ -12,26 +14,20 @@ const CurrentHoldingsTable = ({data}) => {
       >
         <TableRow>
           <TableHeaderColumn colSpan="2" />
-          <TableHeaderColumn align="center" colSpan="2" tooltip="Bitcoin">
-            BTC
-          </TableHeaderColumn>
-          <TableHeaderColumn align="center" colSpan="2" tooltip="Ethereum">
-            ETH
-          </TableHeaderColumn>
-          <TableHeaderColumn align="center" colSpan="2" tooltip="Litecoin">
-            LTC
-          </TableHeaderColumn>
+          {cryptoCurrencies.map(c =>
+            <TableHeaderColumn align="center" colSpan="2">{c}</TableHeaderColumn>
+          )}
           <TableHeaderColumn />
         </TableRow>
         <TableRow>
           <TableHeaderColumn>Who</TableHeaderColumn>
           <TableHeaderColumn align="right">Stake</TableHeaderColumn>
-          <TableHeaderColumn align="right">Holds</TableHeaderColumn>
-          <TableHeaderColumn align="right">Val</TableHeaderColumn>
-          <TableHeaderColumn align="right">Holds</TableHeaderColumn>
-          <TableHeaderColumn align="right">Val</TableHeaderColumn>
-          <TableHeaderColumn align="right">Holds</TableHeaderColumn>
-          <TableHeaderColumn align="right">Val</TableHeaderColumn>
+          {cryptoCurrencies.map(c =>
+            <Fragment key={c}>
+              <TableHeaderColumn align="right">Holds</TableHeaderColumn>
+              <TableHeaderColumn align="right">Val</TableHeaderColumn>
+            </Fragment>
+          )}
           <TableHeaderColumn align="right">Overall</TableHeaderColumn>
         </TableRow>
       </TableHeader>
@@ -40,41 +36,43 @@ const CurrentHoldingsTable = ({data}) => {
         stripedRows={false}
         displayRowCheckbox={false}
       >
-        {data.map( (row, index) => (
-          <TableRow key={index}>
-            <TableRowColumn bold={true}>{row.who}</TableRowColumn>
-            <CurrencyColumn value={row.stake} />
-            <CryptoCurrencyColumn value={row.btc.holds} />
-            <CurrencyColumn value={row.btc.val} />
-            <CryptoCurrencyColumn value={row.eth.holds} />
-            <CurrencyColumn value={row.eth.val} />
-            <CryptoCurrencyColumn value={row.ltc.holds} />
-            <CurrencyColumn value={row.ltc.val} />
-            <OverallColumn value={row.overall} />
-          </TableRow>
-        ))}
+        {Object.keys(data).map((person, index) => {
+          const { overallProfit, depositedValue, ...currencyData } = data[person];
+          return (
+            <TableRow key={index}>
+              <TableRowColumn bold={true}>{person}</TableRowColumn>
+              <CurrencyColumn value={depositedValue}/>
+              {cryptoCurrencies.map(c =>
+                <Fragment key={c}>
+                  <CryptoCurrencyColumn value={currencyData[c].holds}/>
+                  <CurrencyColumn value={currencyData[c].valueGBP}/>
+                </Fragment>
+              )}
+              <OverallColumn value={overallProfit}/>
+            </TableRow>
+          )
+        })}
       </TableBody>
     </Table>
   );
 };
 
 CurrentHoldingsTable.propTypes = {
-  data: PropTypes.arrayOf(
+  data: PropTypes.objectOf(
     PropTypes.shape({
-      who: PropTypes.string,
-      stake: PropTypes.number,
-      overall: PropTypes.number,
-      btc: PropTypes.shape({
+      depositedValue: PropTypes.number,
+      overallProfit: PropTypes.number,
+      BTC: PropTypes.shape({
         holds: PropTypes.number,
-        val: PropTypes.number,
+        valueGBP: PropTypes.number,
       }),
-      eth: PropTypes.shape({
+      ETH: PropTypes.shape({
         holds: PropTypes.number,
-        val: PropTypes.number,
+        valueGBP: PropTypes.number,
       }),
-      ltc: PropTypes.shape({
+      LTC: PropTypes.shape({
         holds: PropTypes.number,
-        val: PropTypes.number,
+        valueGBP: PropTypes.number,
       }),
     }),
   ),
