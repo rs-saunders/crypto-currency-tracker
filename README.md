@@ -44,25 +44,40 @@ export const spotPriceData = {
   },
 };
 
-export const currentHoldingsData = [
-  {
-    who: 'Richy',
-    stake: 300,
-    overall: -21.73,
-    btc: {
-      holds: 0.00518308,
-      val: 56.74,
-    },
-    eth: {
-      holds: 0.0186399,
-      val: 9.88,
-    },
-    ltc: {
-      holds: 1.00208319,
-      val: 211.41,
-    },
-  },
-];
+export const currentHoldingsData = {
+   "Richy": {
+     "overallProfit": -44.1779087836,
+     "depositedValue": 300,
+     "BTC": {
+       "holds": 0.00518308,
+       "valueGBP": 51.9033112892
+     },
+     "ETH": {
+       "holds": 0.0186399,
+       "valueGBP": 9.033641136
+     },
+     "LTC": {
+       "holds": 1.00208319,
+       "valueGBP": 194.8851387912
+     }
+   },
+   "John": {
+     "overallProfit": 96.3166815564,
+     "depositedValue": 500,
+     "BTC": {
+       "holds": 0.05954836,
+       "valueGBP": 596.3166815564
+     },
+     "ETH": {
+       "holds": 0,
+       "valueGBP": 0
+     },
+     "LTC": {
+       "holds": 0,
+       "valueGBP": 0
+     }
+   },
+};
 ```
 
 ### Responsive
