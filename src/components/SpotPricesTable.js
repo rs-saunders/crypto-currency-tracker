@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { Table, TableBody, TableHeader, TableRow } from 'material-ui/Table';
 import { TableHeaderColumn, CurrencyColumn } from './TableColumns';
 
+const realCurrencies = ['GBP', 'USD'];
+const cryptoCurrencies = ['BTC', 'ETH', 'LTC', 'BCH'];
+
 const SpotPricesTable = ({data}) => {
   return (
     <Table selectable={false}>
@@ -13,8 +16,9 @@ const SpotPricesTable = ({data}) => {
       >
         <TableRow>
           <TableHeaderColumn>Currency</TableHeaderColumn>
-          <TableHeaderColumn align="right">GBP Value</TableHeaderColumn>
-          <TableHeaderColumn align="right">USD Value</TableHeaderColumn>
+          {realCurrencies.map((j) => (
+            <TableHeaderColumn align="right">{j} Value</TableHeaderColumn>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody
@@ -22,16 +26,12 @@ const SpotPricesTable = ({data}) => {
         stripedRows={false}
         displayRowCheckbox={false}
       >
-        {[
-          ['BTC', data.btc],
-          ['ETH', data.eth],
-          ['LTC', data.ltc],
-          ['BCH', data.bch],
-        ].map(([label, price]) => (
-          <TableRow key={label}>
-            <TableHeaderColumn>{label}</TableHeaderColumn>
-            <CurrencyColumn value={price.gbp} />
-            <CurrencyColumn value={price.usd} />
+        {cryptoCurrencies.map((i) => (
+          <TableRow key={i}>
+            <TableHeaderColumn>{i}</TableHeaderColumn>
+            {realCurrencies.map((j) => (
+            <CurrencyColumn value={data[i][j]} currency={j} />
+            ))}
           </TableRow>
         ))}
       </TableBody>
@@ -40,21 +40,21 @@ const SpotPricesTable = ({data}) => {
 };
 
 SpotPricesTable.propTypes = PropTypes.shape({
-  btc: PropTypes.shape({
-    gbp: PropTypes.string,
-    usd: PropTypes.string,
+  BTC: PropTypes.shape({
+    GBP: PropTypes.string,
+    USD: PropTypes.string,
   }),
-  eth: PropTypes.shape({
-    gbp: PropTypes.string,
-    usd: PropTypes.string,
+  ETH: PropTypes.shape({
+    GBP: PropTypes.string,
+    USD: PropTypes.string,
   }),
-  ltc: PropTypes.shape({
-    gbp: PropTypes.string,
-    usd: PropTypes.string,
+  LTC: PropTypes.shape({
+    GBP: PropTypes.string,
+    USD: PropTypes.string,
   }),
-  bch: PropTypes.shape({
-    gbp: PropTypes.string,
-    usd: PropTypes.string,
+  BCH: PropTypes.shape({
+    GBP: PropTypes.string,
+    USD: PropTypes.string,
   }),
 });
 

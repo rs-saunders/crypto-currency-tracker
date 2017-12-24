@@ -10,6 +10,8 @@ import CurrentHoldingsTableMobile from './components/CurrentHoldingsTableMobile'
 import SpotPricesTable from './components/SpotPricesTable';
 
 import { spotPriceData, currentHoldingsData } from './data';
+import exampleData from './data/example';
+
 import './App.css';
 
 const Desktop = props => <Responsive {...props} minWidth={1024} />;
@@ -22,7 +24,7 @@ class App extends Component {
         <div className="App">
           <Paper className="Paper">
             <AppBar title="Spot Prices" showMenuIconButton={false} />
-            <SpotPricesTable data={spotPriceData} />
+            <SpotPricesTable data={exampleData.spotPrices} />
           </Paper>
           <Paper className="Paper">
             <AppBar title="Current Holdings" showMenuIconButton={false} />

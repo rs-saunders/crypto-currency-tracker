@@ -19,9 +19,9 @@ export const TableRowColumn = ({align, bold, style, ...props}) => {
 };
 
 /* eslint-disable react/style-prop-object */
-export const CurrencyColumn = ({value}) => (
+export const CurrencyColumn = ({value, currency="GBP"}) => (
   <TableRowColumn align="right">
-    <FormattedNumber value={value} style="currency" currency="GBP"/>
+    <FormattedNumber value={value} style="currency" currency={currency}/>
   </TableRowColumn>
 );
 

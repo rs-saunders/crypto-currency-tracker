@@ -1,0 +1,86 @@
+{
+  "spotPrices": {
+    "BTC": {
+      "GBP": "10013.99",
+      "USD": "13380.12"
+    },
+    "ETH": {
+      "GBP": "484.64",
+      "USD": "647.43"
+    },
+    "LTC": {
+      "GBP": "194.48",
+      "USD": "259.78"
+    },
+    "BCH": {
+      "GBP": "2044.38",
+      "USD": "2730.05"
+    }
+  },
+  "currentHoldings": {
+    "Richy": {
+      "overallProfit": -44.1779087836,
+      "depositedValue": 300,
+      "BTC": {
+        "holds": 0.00518308,
+        "valueGBP": 51.9033112892
+      },
+      "ETH": {
+        "holds": 0.0186399,
+        "valueGBP": 9.033641136
+      },
+      "LTC": {
+        "holds": 1.00208319,
+        "valueGBP": 194.8851387912
+      }
+    },
+    "John": {
+      "overallProfit": 96.3166815564,
+      "depositedValue": 500,
+      "BTC": {
+        "holds": 0.05954836,
+        "valueGBP": 596.3166815564
+      },
+      "ETH": {
+        "holds": 0,
+        "valueGBP": 0
+      },
+      "LTC": {
+        "holds": 0,
+        "valueGBP": 0
+      }
+    },
+    "Andy": {
+      "overallProfit": -25.2142208613,
+      "depositedValue": 100,
+      "BTC": {
+        "holds": 0.00746813,
+        "valueGBP": 74.7857791387
+      },
+      "ETH": {
+        "holds": 0,
+        "valueGBP": 0
+      },
+      "LTC": {
+        "holds": 0,
+        "valueGBP": 0
+      }
+    },
+    "Jim": {
+      "overallProfit": 8.4731059408,
+      "depositedValue": 500,
+      "BTC": {
+        "holds": 0,
+        "valueGBP": 0
+      },
+      "ETH": {
+        "holds": 0,
+        "valueGBP": 0
+      },
+      "LTC": {
+        "holds": 2.61452646,
+        "valueGBP": 508.4731059408
+      }
+    }
+  }
+}

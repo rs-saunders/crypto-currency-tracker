@@ -26,21 +26,21 @@ hard coded data.
 
 ```
 export const spotPriceData = {
-  btc: {
-    gbp: 11015.06,
-    usd: 14715.00,
+  BTC: {
+    GBP: 11015.06,
+    USD: 14715.00,
   },
-  eth: {
-    gbp: 535.23,
-    usd: 715.01,
+  ETH: {
+    GBP: 535.23,
+    USD: 715.01,
   },
-  ltc: {
-    gbp: 209.88,
-    usd: 280.84,
+  LTC: {
+    GBP: 209.88,
+    USD: 280.84,
   },
-  bch: {
-    gbp: 2135.98,
-    usd: 2849.06,
+  BCH: {
+    GBP: 2135.98,
+    USD: 2849.06,
   },
 };
 
