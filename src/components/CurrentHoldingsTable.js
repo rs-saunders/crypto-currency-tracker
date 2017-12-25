@@ -17,7 +17,7 @@ const CurrentHoldingsTable = ({data}) => {
           {cryptoCurrencies.map(c =>
             <TableHeaderColumn key={c} align="center" colSpan="2">{c}</TableHeaderColumn>
           )}
-          <TableHeaderColumn />
+          <TableHeaderColumn align="center" colSpan="2">Combined</TableHeaderColumn>
         </TableRow>
         <TableRow>
           <TableHeaderColumn>Who</TableHeaderColumn>
@@ -28,6 +28,7 @@ const CurrentHoldingsTable = ({data}) => {
               <TableHeaderColumn align="right">Val</TableHeaderColumn>
             </Fragment>
           )}
+          <TableHeaderColumn align="right">Total</TableHeaderColumn>
           <TableHeaderColumn align="right">Overall</TableHeaderColumn>
         </TableRow>
       </TableHeader>
@@ -48,6 +49,7 @@ const CurrentHoldingsTable = ({data}) => {
                   <CurrencyColumn value={currencyData[c].valueGBP}/>
                 </Fragment>
               )}
+              <CurrencyColumn bold={true} value={cryptoCurrencies.reduce((total, c) => total + data[person][c].valueGBP, 0)}/>
               <OverallColumn value={overallProfit}/>
             </TableRow>
           )

@@ -51,7 +51,11 @@ const CurrentHoldingsTableMobile = ({data}) => {
                   </Fragment>
                 )}
                 <TableRow>
-                  <TableRowColumn />
+                  <TableHeaderColumn rowSpan={2}>Combined</TableHeaderColumn>
+                  <TableHeaderColumn>Total</TableHeaderColumn>
+                  <CurrencyColumn bold={true} value={cryptoCurrencies.reduce((total, c) => total + data[person][c].valueGBP, 0)}/>
+                </TableRow>
+                <TableRow>
                   <TableHeaderColumn>Overall</TableHeaderColumn>
                   <OverallColumn value={overallProfit} />
                 </TableRow>
