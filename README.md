@@ -35,7 +35,7 @@ npm build
 
 ### Data
 
-This app calls a backend service to supply it with data in the following [format](./docs/example.json)
+This app calls a backend service to supply it with data in the following [format](./docs/response.example.json)
 
 By default the url to the backend is defined as the Environment Variable
 ```
