@@ -17,7 +17,7 @@ const SpotPricesTable = ({data}) => {
         <TableRow>
           <TableHeaderColumn>Currency</TableHeaderColumn>
           {realCurrencies.map((j) => (
-            <TableHeaderColumn align="right">{j} Value</TableHeaderColumn>
+            <TableHeaderColumn key={j} align="right">{j} Value</TableHeaderColumn>
           ))}
         </TableRow>
       </TableHeader>

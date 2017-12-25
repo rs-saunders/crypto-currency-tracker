@@ -15,7 +15,7 @@ const CurrentHoldingsTable = ({data}) => {
         <TableRow>
           <TableHeaderColumn colSpan="2" />
           {cryptoCurrencies.map(c =>
-            <TableHeaderColumn align="center" colSpan="2">{c}</TableHeaderColumn>
+            <TableHeaderColumn key={c} align="center" colSpan="2">{c}</TableHeaderColumn>
           )}
           <TableHeaderColumn />
         </TableRow>
