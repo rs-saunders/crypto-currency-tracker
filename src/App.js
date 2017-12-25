@@ -5,6 +5,7 @@ import { FormattedRelative } from 'react-intl';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
+import Snackbar from 'material-ui/Snackbar';
 
 import CurrentHoldingsTable from './components/CurrentHoldingsTable';
 import CurrentHoldingsTableMobile from './components/CurrentHoldingsTableMobile';
@@ -20,6 +21,7 @@ class App extends Component {
   state = {
     currentHoldings: undefined,
     spotPrices: undefined,
+    error: undefined,
   };
 
   componentDidMount() {
@@ -34,14 +36,15 @@ class App extends Component {
         lastUpdated: Date.now(),
         currentHoldings,
         spotPrices,
+        error: undefined,
       });
     })
-    .catch(err => {
-      console.log(err.message);
+    .catch(error => {
+      this.setState({ error });
     });
 
   render() {
-    const { currentHoldings, spotPrices, lastUpdated } = this.state;
+    const { currentHoldings, spotPrices, lastUpdated, error } = this.state;
     return (
       <MuiThemeProvider>
         <div className="App">
@@ -70,6 +73,13 @@ class App extends Component {
                 <CurrentHoldingsTableMobile data={currentHoldings}/>
               </Mobile>
             </Paper>
+          }
+          {error &&
+            <Snackbar
+              open={true}
+              message={error.message}
+              autoHideDuration={5000}
+            />
           }
         </div>
       </MuiThemeProvider>
