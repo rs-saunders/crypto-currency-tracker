@@ -7,7 +7,7 @@ import { TableHeaderColumn, CurrencyColumn } from './TableColumns';
 const realCurrencies = ['GBP', 'USD'];
 const cryptoCurrencies = ['BTC', 'ETH', 'LTC', 'BCH'];
 
-const SpotPricesTable = ({data}) => {
+const SpotPricesTable = (props) => {
   return (
     <Table selectable={false}>
       <TableHeader
@@ -30,7 +30,7 @@ const SpotPricesTable = ({data}) => {
           <TableRow key={i}>
             <TableHeaderColumn>{i}</TableHeaderColumn>
             {realCurrencies.map((j) => (
-              <CurrencyColumn key={j} value={data[i][j]} currency={j} />
+              <CurrencyColumn key={j} value={props[i][j]} currency={j} />
             ))}
           </TableRow>
         ))}
@@ -39,7 +39,7 @@ const SpotPricesTable = ({data}) => {
   );
 };
 
-SpotPricesTable.propTypes = PropTypes.shape({
+SpotPricesTable.propTypes = {
   BTC: PropTypes.shape({
     GBP: PropTypes.string,
     USD: PropTypes.string,
@@ -56,6 +56,6 @@ SpotPricesTable.propTypes = PropTypes.shape({
     GBP: PropTypes.string,
     USD: PropTypes.string,
   }),
-});
+};
 
 export default SpotPricesTable;

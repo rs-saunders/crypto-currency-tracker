@@ -26,7 +26,7 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchData();
-    setInterval(this.fetchData, process.env.REACT_APP_BACKEND_POLL_INTERVAL);
+    setInterval(this.fetchData, parseInt(process.env.REACT_APP_BACKEND_POLL_INTERVAL, 10));
   };
 
   fetchData = () => fetch(process.env.REACT_APP_BACKEND_URL)
@@ -56,11 +56,11 @@ class App extends Component {
                     Spot Prices (Last updated{' '}
                     <FormattedRelative
                       value={lastUpdated}
-                      updateInterval={process.env.REACT_APP_LAST_UPDATED_INTERVAL}
+                      updateInterval={parseInt(process.env.REACT_APP_LAST_UPDATED_INTERVAL, 10)}
                     />)
                   </Fragment>}
                 showMenuIconButton={false} />
-              <SpotPricesTable data={spotPrices}/>
+              <SpotPricesTable {...spotPrices} />
             </Paper>
           }
           {currentHoldings &&
