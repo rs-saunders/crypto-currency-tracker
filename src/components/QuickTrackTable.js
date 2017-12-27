@@ -38,10 +38,30 @@ class QuickTrackTable extends Component {
     realCurrency: 'GBP',
   };
 
-  handleRealAmountChange = (event, value) => this.setState({ realAmount: value});
-  handleRealCurrencyChange = (event, index, value) => this.setState({ realCurrency: value});
-  handleCryptoAmountChange = (event, value) => this.setState({ cryptoAmount: value});
-  handleCryptoCurrencyChange = (event, index, value) => this.setState({ cryptoCurrency: value});
+  loadFromLocalStorage = field => {
+    const value = localStorage.getItem(field);
+    if(value) {
+      this.setState({ [field]: value });
+    }
+  };
+
+  handleChange = field => (...args) => {
+    const value = (args.length ===  3) ? args[2] : args[1];
+    this.setState({ [field]: value });
+    localStorage.setItem(field, value);
+  };
+
+  handleRealAmountChange = this.handleChange('realAmount');
+  handleCryptoAmountChange = this.handleChange('cryptoAmount');
+  handleRealCurrencyChange = this.handleChange('realCurrency');
+  handleCryptoCurrencyChange = this.handleChange('cryptoCurrency');
+
+  componentDidMount() {
+    this.loadFromLocalStorage('realAmount');
+    this.loadFromLocalStorage('realCurrency');
+    this.loadFromLocalStorage('cryptoAmount');
+    this.loadFromLocalStorage('cryptoCurrency');
+  }
 
   render() {
 
