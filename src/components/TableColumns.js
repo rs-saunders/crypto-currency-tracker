@@ -31,7 +31,7 @@ export const CryptoCurrencyColumn = ({value, ...props}) => (
   </TableRowColumn>
 );
 
-export const OverallColumn = ({value}) => {
+export const OverallColumn = ({value, currency='GBP'}) => {
 
   const styles = {
     green: {
@@ -44,7 +44,7 @@ export const OverallColumn = ({value}) => {
 
   return (
     <TableRowColumn align="right" bold={true} style={value < 0 ? styles.red : styles.green}>
-      <FormattedNumber value={value} style="currency" currency="GBP"/>
+      <FormattedNumber value={value} style="currency" currency={currency} />
     </TableRowColumn>
   );
 };

@@ -10,6 +10,7 @@ import Snackbar from 'material-ui/Snackbar';
 import CurrentHoldingsTable from './components/CurrentHoldingsTable';
 import CurrentHoldingsTableMobile from './components/CurrentHoldingsTableMobile';
 import SpotPricesTable from './components/SpotPricesTable';
+import QuickTrackTable from './components/QuickTrackTable';
 
 import './App.css';
 
@@ -49,19 +50,27 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           {spotPrices &&
-            <Paper className="Paper">
-              <AppBar
-                title={
-                  <Fragment>
-                    Spot Prices (Last updated{' '}
-                    <FormattedRelative
-                      value={lastUpdated}
-                      updateInterval={parseInt(process.env.REACT_APP_LAST_UPDATED_INTERVAL, 10)}
-                    />)
-                  </Fragment>}
-                showMenuIconButton={false} />
-              <SpotPricesTable {...spotPrices} />
-            </Paper>
+            <Fragment>
+              <Paper className="Paper">
+                <AppBar
+                  title={
+                    <Fragment>
+                      Spot Prices (Last updated{' '}
+                      <FormattedRelative
+                        value={lastUpdated}
+                        updateInterval={parseInt(process.env.REACT_APP_LAST_UPDATED_INTERVAL, 10)}
+                      />)
+                    </Fragment>}
+                  showMenuIconButton={false} />
+                <SpotPricesTable {...spotPrices} />
+              </Paper>
+              <Paper className="Paper">
+                <AppBar
+                  title="Quick Track"
+                  showMenuIconButton={false} />
+                <QuickTrackTable {...spotPrices} />
+              </Paper>
+            </Fragment>
           }
           {currentHoldings &&
             <Paper className="Paper">

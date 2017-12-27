@@ -3,7 +3,10 @@
 Front end for displaying crypto currency spot prices and the current holdings
 of supplied persons amounts of each currency.
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+**Now with quick track**
+Enter the amount of crypto currency you own and how much it was previously
+worth to you and it will tell you how much it is worth now and
+how much it has gone up or down by.
 
 <img src="./docs/desktop.screenshot.png" width="1024px" />
 
